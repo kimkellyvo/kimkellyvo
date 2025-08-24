@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kim Kelly - Voice Actor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #000000;
+            background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 50%, #000000 100%);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, rgba(139, 75, 107, 0.95) 0%, rgba(107, 57, 82, 0.95) 100%);
+            backdrop-filter: blur(15px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            min-height: 100px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 100px;
+            padding: 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: -0.5px;
+            font-family: 'Rock Salt', cursive;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #ffffff;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .nav-links a:hover::before {
+            width: 80%;
+        }
+
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .floating-elements::before,
+        .floating-elements::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .floating-elements::before {
+            width: 200px;
+            height: 200px;
+            top: 20%;
+            left: 10%;
+            animation-delay: -5s;
+        }
+
+        .floating-elements::after {
+            width: 150px;
+            height: 150px;
+            bottom: 20%;
+            right: 10%;
+            animation-delay: -10s;
+        }
+
+        .parallax {
+            transform: translateZ(0);
+            will-change: transform;
+        }
+
+        .hero-photo {
+            width: 500px;
+            height: 700px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #8B4B6B;
+            animation: fadeInUp 1s ease;
+            flex-shrink: 0;
+            margin-top: 120px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .hero-main {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .social-icon {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, rgba(139, 75, 107, 0.2), rgba(107, 57, 82, 0.3));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8B4B6B;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(139, 75, 107, 0.2);
+            border: 2px solid rgba(139, 75, 107, 0.1);
+            pointer-events: auto;
+            cursor: pointer;
+            position: relative;
+            z-index: 10;
+        }
+
+        .social-icon:hover {
+            background: linear-gradient(135deg, #8B4B6B, #7A4460);
+            color: white;
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(139, 75, 107, 0.4);
+            border-color: #8B4B6B;
+        }
+
+        .social-icon:first-child {
+            font-size: 2rem;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            vertical-align: middle;
+        }
+
+        .hero-content h1 {
+            font-size: 6rem;
+            margin-bottom: 0.1rem;
+            animation: fadeInUp 1s ease 0.2s both;
+            color: #000000;
+            font-family: 'Rock Salt', cursive;
+            font-weight: normal;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+            color: #8B4B6B;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #8B4B6B;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(139, 75, 107, 0.4);
+        }
+
+        section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #000000;
+        }
+
+        .audio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .audio-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .audio-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .audio-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .audio-card:hover::before {
+            left: 100%;
+        }
+
+        .audio-card h3 {
+            margin-bottom: 1rem;
+            color: #8B4B6B;
+        }
+
+        .play-btn {
+            background: linear-gradient(45deg, #2c2c2c, #1a1a1a);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .play-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #1a1a1a, #8B4B6B);
+            transition: left 0.3s ease;
+        }
+
+        .play-btn:hover::before {
+            left: 0;
+        }
+
+        .play-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .play-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 75, 107, 0.4);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.05);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .portfolio-content {
+            padding: 1.5rem;
+            color: #000000;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #8B4B6B;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            33% {
+                transform: translateY(-20px) rotate(1deg);
+            }
+            66% {
+                transform: translateY(-10px) rotate(-1deg);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+
+        .audio-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .waveform {
+            height: 4px;
+            background: linear-gradient(90deg, #2c2c2c, #1a1a1a, #8B4B6B);
+            border-radius: 2px;
+            margin-top: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .audio-card:hover .waveform {
+            opacity: 1;
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        .audio-details {
+            display: flex;
+            justify-content: space-between;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .duration {
+            background: #8B4B6B;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+
+        .style {
+            background: #f0f0f0;
+            color: #333;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+
+        .skills-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .skills-grid .skill-item:nth-child(5) {
+            grid-column: 1 / -1;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .skill-item {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            color: #000000;
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #2c2c2c, #8B4B6B);
+            border-radius: 4px;
+            width: 0;
+            transition: width 2s ease;
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(139, 75, 107, 0.2);
+            z-index: 9999;
+        }
+
+        .scroll-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #8B4B6B, #7A4460);
+            width: 0;
+            transition: width 0.1s ease;
+        }
+
+        .chat-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #8B4B6B, #7A4460);
+            border-radius: 50%;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(139, 75, 107, 0.4);
+            z-index: 1001;
+            transition: transform 0.3s ease;
+        }
+
+        .chat-button:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-window {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            background: linear-gradient(45deg, #8B4B6B, #7A4460);
+            color: white;
+            padding: 15px;
+            border-radius: 15px 15px 0 0;
+            font-weight: bold;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .chat-input {
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .chat-input input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        .message {
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 15px;
+            max-width: 80%;
+        }
+
+        .message.bot {
+            background: #f0f0f0;
+            align-self: flex-start;
+        }
+
+        .message.user {
+            background: #8B4B6B;
+            color: white;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .hero-main {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .audio-grid,
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Kim Kelly</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#demos">Voice Demos</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="mobile-menu">☰</button>
+        </nav>
+    </header>
+
+    <div class="scroll-indicator">
+        <div class="scroll-progress"></div>
+    </div>
+
+    <button class="chat-button" onclick="toggleChat()">💬</button>
+    
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            Chat with Kim Kelly
+            <button onclick="toggleChat()" style="float: right; background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer;">×</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">Hi! I'm Kim Kelly. How can I help you with your voice-over project?</div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Type your message..." onkeypress="handleChatInput(event)">
+        </div>
+    </div>
+
+    <section id="home" class="hero parallax">
+        <div class="floating-elements"></div>
+        <div class="hero-content">
+            <div class="hero-main">
+                <div class="hero-photo"><img src="kim-photo.jpg" alt="Kim Kelly" style="width: 100%; height: 100%; object-fit: cover; border-radius: 11px;"></div>
+                <div class="hero-text">
+                    <h1>Kim Kelly</h1>
+                    <p style="text-transform: uppercase; letter-spacing: 0.3em; font-weight: 300; font-family: 'Inter', sans-serif;">Voice Actor</p>
+                    <p style="font-size: 1rem; opacity: 0.8; margin-bottom: 1rem; color: #000000; font-weight: 600; font-family: 'Quicksand', sans-serif;">A voice that inspires trust — authoritative, warm, and effortlessly engaging.</p>
+                    <div class="social-icons">
+                        <a href="mailto:kim@kimkellyvoice.com" class="social-icon">✉</a>
+                        <a href="https://www.linkedin.com/in/kimkellyvo/" class="social-icon" target="_blank">in</a>
+                        <a href="https://x.com/kimkellyvo" class="social-icon" target="_blank">𝕏</a>
+                        <a href="https://www.instagram.com/kimkellyvoice/" class="social-icon" target="_blank">IG</a>
+                        <a href="https://www.youtube.com/@kimkellyvoice" class="social-icon" target="_blank">▶</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <div class="container">
+            <h2>Recent Projects</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="https://via.placeholder.com/300x200/667eea/ffffff?text=Netflix+Series" alt="Netflix Series">
+                    <div class="portfolio-content">
+                        <h3>Netflix Documentary</h3>
+                        <p>Narrator for award-winning nature documentary series</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://via.placeholder.com/300x200/764ba2/ffffff?text=Video+Game" alt="Video Game">
+                    <div class="portfolio-content">
+                        <h3>AAA Video Game</h3>
+                        <p>Multiple character voices for fantasy RPG</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://via.placeholder.com/300x200/ff6b6b/ffffff?text=Commercial" alt="Commercial">
+                    <div class="portfolio-content">
+                        <h3>National TV Campaign</h3>
+                        <p>Lead voice for major automotive brand</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://via.placeholder.com/300x200/4ecdc4/ffffff?text=Audiobook" alt="Audiobook">
+                    <div class="portfolio-content">
+                        <h3>Bestselling Audiobook</h3>
+                        <p>Full narration of New York Times bestseller</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="skills-section">
+        <div class="container">
+            <h2>Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <div class="skill-icon">🎯</div>
+                    <h3>Commercial Voice-Over</h3>
+                    <p>Compelling brand storytelling</p>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">🎬</div>
+                    <h3>Documentary Narration</h3>
+                    <p>Authoritative storytelling</p>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">📚</div>
+                    <h3>Audiobook Narration</h3>
+                    <p>Immersive character voices</p>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">🎤</div>
+                    <h3>Singing & Vocals</h3>
+                    <p>Musical performances and jingles</p>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">🎮</div>
+                    <h3>Video Game VO</h3>
+                    <p>Dynamic character performance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <form class="contact-form" onsubmit="submitForm(event)">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="project">Project Type</label>
+                    <select id="project" name="project" style="width: 100%; padding: 12px; border: 2px solid #e1e5e9; border-radius: 8px;">
+                        <option>Commercial</option>
+                        <option>Narration</option>
+                        <option>Character Work</option>
+                        <option>E-Learning</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Form submission
+        function submitForm(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            alert(`Thank you ${data.name}! Your message has been received. I'll get back to you within 24 hours.`);
+            event.target.reset();
+        }
+
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Scroll progress indicator
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            const scrollProgress = document.querySelector('.scroll-progress');
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            
+            scrollProgress.style.width = scrollPercent + '%';
+            
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(139, 75, 107, 0.98)';
+            } else {
+                header.style.background = 'rgba(139, 75, 107, 0.95)';
+            }
+        });
+
+        // Chat functionality
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function handleChatInput(event) {
+            if (event.key === 'Enter') {
+                const input = document.getElementById('chatInput');
+                const message = input.value.trim();
+                if (message) {
+                    addMessage(message, 'user');
+                    input.value = '';
+                    
+                    // Simulate bot response
+                    setTimeout(() => {
+                        const responses = [
+                            "Thanks for your message! I'd love to discuss your project. What type of voice-over work are you looking for?",
+                            "That sounds like an exciting project! I have experience in that area. Would you like to schedule a consultation?",
+                            "I'd be happy to help with that! Please feel free to email me at kim@kimkellyvoice.com for more details.",
+                            "Great question! My rates vary by project type and length. Let's discuss your specific needs."
+                        ];
+                        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                        addMessage(randomResponse, 'bot');
+                    }, 1000);
+                }
+            }
+        }
+
+        function addMessage(text, sender) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            messageDiv.textContent = text;
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        // Parallax effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.parallax');
+            
+            parallaxElements.forEach(element => {
+                const speed = 0.5;
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
